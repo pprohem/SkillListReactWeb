@@ -6,12 +6,13 @@ import CardSkills from "../../Components/Card"
 
 export default function Home () {
 
+    var user =(localStorage.getItem("@user"))
     return (
         <> 
         <Header />
             <Container>
                 <DivTitle>
-                    <Title> SKILLS DO USUARIO</Title>
+                    <Title> SKILLS DO USUARIO:  {user.toUpperCase()} </Title>
                 </DivTitle>
                 
                 <ContainerSkills>

@@ -69,7 +69,7 @@ function handleDeleteSkill(id) {
 return(
     <>
        {skills.length === 0 ? (
-          <p></p>
+          <h2>Esse usuário não possui nenhuma skill cadastrada!</h2>
         ) : (
       
           
