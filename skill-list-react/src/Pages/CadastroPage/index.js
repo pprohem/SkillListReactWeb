@@ -26,7 +26,19 @@ export default function CadastroUser () {
     };
 
     const handleSubmit = (event) => {
-        debugger
+        if ( password === "" || username === "" ) {
+            toast.error('📢 Os campos não podem ser nulos!', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                });
+                return;
+        } 
         if ( password !== passwordConfirmation) {
             toast.error('📢 Senhas não conferem!', {
                 position: "bottom-right",

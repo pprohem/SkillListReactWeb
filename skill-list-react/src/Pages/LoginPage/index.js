@@ -1,9 +1,10 @@
 import React, {useState, useContext} from 'react';
-import {DivSelect, Input, Button, Container, LoginContainer, linkStyle } from './styled';
-import { ToastContainer, toast } from 'react-toastify';
+import {DivSelect, Input, Button, Container, LoginContainer, linkStyle, EyeButton, DivPass } from './styled';
 import {Link} from "react-router-dom"
 import AuthContext from '../../Context/auth';
 import "react-toastify/dist/ReactToastify.css"
+import { BsEye, BsEyeSlash } from 'react-icons/bs';
+
 
 
 export default function LoginPage() {
@@ -36,9 +37,16 @@ React.useEffect(() => {
 
             <h1> LOGIN</h1>
             <Input type="text" name="text" value = {username}class="input" placeholder='username'  onChange={e => setUsername(e.target.value)}/>
-            <Input type={passwordShown ? "text" : "password"} value ={password}name="text" class="input" placeholder="password" onChange={e => setPassword(e.target.value)}/>
-            {/* <button onClick={togglePassword}>Show Password</button> */}
+            <DivPass>
+              <Input type={passwordShown ? "text" : "password"} value ={password}name="text" class="input" placeholder="password" onChange={e => setPassword(e.target.value)}/>
+                {passwordShown ?
+                    <EyeButton onClick={togglePassword}> <BsEyeSlash size={20}  color={"white"}/>  </EyeButton>
+                    :
+                    <EyeButton onClick={togglePassword}> <BsEye size={20} color={"white"} />  </EyeButton> 
+                }
 
+            </DivPass>
+           
               <DivSelect>
 
                 <input id='inputcheck'
@@ -46,7 +54,7 @@ React.useEffect(() => {
                   name="lsRememberMe"
 
                 />
-                 <label>Remember me</label>
+                 <label>LEMBRE-ME</label>
 
               </DivSelect>
             <Button onClick={handleSignIn}>
@@ -62,7 +70,7 @@ React.useEffect(() => {
             </Link>
             
             </LoginContainer>
-            <ToastContainer />
+           
         </Container>
 
         

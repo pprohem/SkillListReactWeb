@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import userService from "../Services/request/userService";
 import { Navigate, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
 
 const AuthContext = createContext({});
 export const AuthProvider = ({ children }) => {
@@ -20,24 +21,42 @@ export const AuthProvider = ({ children }) => {
 
     function signIn(username, password, isChecked) {
         users?.data.find(user => {
-            if (user.login === username && user.password === password) {
-                localStorage.setItem("@authenticated", true);
-                localStorage.setItem("@id", user.id);
-                localStorage.setItem("@user", user.login);
-                localStorage.setItem("@password", user.password);
-                localStorage.setItem("@checked", isChecked)
-                setIsAuthenticated(true); 
-                setUsername(user.login);
-                navigate("/cadastro")
+            
+            if(username !== "" && password !== "") {
+                if (user.login === username && user.password === password) {
+                    localStorage.setItem("@authenticated", true);
+                    localStorage.setItem("@id", user.id);
+                    localStorage.setItem("@user", user.login);
+                    localStorage.setItem("@password", user.password);
+                    localStorage.setItem("@checked", isChecked)
+                    setIsAuthenticated(true); 
+                    setUsername(user.login);
+                    navigate("/home")
+            }
+            
+           
             }
         })
      }
+
+     const signOut = () => {
+        setIsAuthenticated(false);
+        setUserId(""); 
+        localStorage.removeItem("id");
+        localStorage.removeItem("@authenticated");
+        localStorage.removeItem("@id");
+     
+
+        navigate("/")
+    }
           
     return (
-        <AuthContext.Provider
+        <> 
+         <AuthContext.Provider
             value={{
                 isAuthenticated,
                 signIn,
+                signOut,
                 userId,
                 username,
                 password
@@ -45,6 +64,9 @@ export const AuthProvider = ({ children }) => {
         >
             {children}
         </AuthContext.Provider>
+         <ToastContainer />
+        </>
+
     );
 };
 export default AuthContext;

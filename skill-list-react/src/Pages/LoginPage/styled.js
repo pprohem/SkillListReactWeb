@@ -34,6 +34,11 @@ export const LoginContainer = styled.div `
       color: #f6f6f6;
       font-family: 'Roboto Flex', sans-serif;
     }
+
+    @media screen and (max-width: 768px){
+        width: 60vw
+    
+    }
 `
 
 export const Input = styled.input `
@@ -136,4 +141,28 @@ margin-top: 10px;
 label{
   margin-left: 10px;
 }
+`
+export const EyeButton = styled.button `
+
+
+background-color: black;
+height: 40px;
+margin-top: 19px;
+
+:hover {
+    cursor: pointer;
+}
+`
+
+
+export const DivPass = styled.div `
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+
+    input{
+      margin-left: 32px
+    }
+
 `
