@@ -10,7 +10,7 @@ import { useContext } from "react";
 
 export function Router () {
     const { isAuthenticated } = useContext(AuthContext);
-if (!isAuthenticated) {
+if (isAuthenticated === "true") {
     return ( 
     <Routes>
         <Route path= "/" element= {<LoginPage />} />
