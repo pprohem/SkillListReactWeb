@@ -8,7 +8,7 @@ import { BsEye, BsEyeSlash } from 'react-icons/bs';
 
 
 export default function LoginPage() {
-  const { signIn } = useContext(AuthContext);
+  const { signIn, message } = useContext(AuthContext);
   const [passwordShown, setPasswordShown] = useState(false);
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -30,6 +30,7 @@ React.useEffect(() => {
     document.getElementById("inputcheck").checked = true;
  }
 }, [])
+
 
     return (
         <Container>
@@ -65,6 +66,7 @@ React.useEffect(() => {
 
                 </div>
             </Button>
+            <h2>{message}</h2>
             <Link to= "/cadastro" style={linkStyle}>
               <h4>Não possui cadastro? Cadastre-se!</h4>
             </Link>

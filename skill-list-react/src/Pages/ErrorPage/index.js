@@ -5,6 +5,7 @@ export default function Error (){
     <Container> 
     <h1>Erro!!</h1>
     <p> O caminho que você procurou não existe!</p>
+    
     </Container>
  )
 }

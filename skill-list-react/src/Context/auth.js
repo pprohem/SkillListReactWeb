@@ -6,12 +6,13 @@ import { ToastContainer, toast } from 'react-toastify';
 const AuthContext = createContext({});
 export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const [userId, setUserId] = useState("");
     const [users, setUsers] = useState([]);
-
+    const [message, setMessage] = useState("");
+    
 
     useEffect(() => {
     userService.getAll().then(users => {
@@ -24,42 +25,50 @@ export const AuthProvider = ({ children }) => {
             
             if(username !== "" && password !== "") {
                 if (user.login === username && user.password === password) {
-                    localStorage.setItem("@authenticated", true);
                     localStorage.setItem("@id", user.id);
                     localStorage.setItem("@user", user.login);
                     localStorage.setItem("@password", user.password);
                     localStorage.setItem("@checked", isChecked)
-                    setIsAuthenticated(true); 
+                     
+                    localStorage.setItem("@authenticated",true)
                     setUsername(user.login);
+                    window.location.reload()
                     navigate("/home")
+            } else {
+                setMessage("Login ou senha incorretos!")
             }
             
            
+            } else{
+                setMessage("Os campos não podem ser nulos")
             }
         })
      }
 
      const signOut = () => {
-        setIsAuthenticated(false);
         setUserId(""); 
+        localStorage.setItem("@authenticated", false)
         localStorage.removeItem("id");
-        localStorage.removeItem("@authenticated");
         localStorage.removeItem("@id");
+        
+        
      
 
         navigate("/")
     }
+
+   
           
     return (
         <> 
          <AuthContext.Provider
             value={{
-                isAuthenticated,
                 signIn,
                 signOut,
                 userId,
                 username,
-                password
+                password,
+                message
             }}
         >
             {children}

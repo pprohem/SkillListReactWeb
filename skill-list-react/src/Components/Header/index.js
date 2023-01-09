@@ -17,7 +17,10 @@ export default function Header () {
     const [skillSelecionada, setSkillSelecionada] = useState()
     const [skills, setSkills] = useState([])
     
-
+    function refreshPage() {
+      window.location.reload(false);
+    }
+  
     const options = [
       { value: skills.id, label: skills.name },
       
@@ -76,6 +79,7 @@ export default function Header () {
             console.log(res.data);
             console.log (Date.now())
             closeModal()
+            refreshPage()
         });
     };
     
@@ -126,6 +130,7 @@ export default function Header () {
 
 
           <Select  
+          
           options={skills}
           onChange={e => setSkillSelecionada(e.value)}
           className= "select"
