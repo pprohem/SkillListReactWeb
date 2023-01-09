@@ -14,6 +14,7 @@ export const Container = styled.div `
     display: flex;
     justify-content: center;
 
+
 `
 
 
@@ -27,6 +28,11 @@ export const DivForm = styled.div `
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    @media screen and (max-width: 768px){
+        width: 90vw
+    
+    }
 
 `
 
